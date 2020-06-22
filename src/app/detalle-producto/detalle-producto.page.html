@@ -1,0 +1,68 @@
+<!-- <hidenav-stretchheader header-height="50" opacity-factor="8" opacity-color="white" init-expanded="true" no-border="true"
+  blur-factor="5">
+
+
+  <div #static>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button text=""></ion-back-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </div>
+
+
+  <div #shrinkexpand image>
+    <img src="https://cdn2.thecatapi.com/images/MTgzMDkyMw.jpg" alt="">
+  </div>
+
+</hidenav-stretchheader> -->
+<ion-header translucent="true">
+
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title title>Detalle</ion-title>
+
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content hidenav-sh-content>
+
+  <section class="padding">
+    <div class="head-title">
+
+      <div>
+        <ion-icon name="fast-food-outline"></ion-icon>&nbsp;
+        <ion-label title>Pizza mini</ion-label>
+      </div><br>
+      <ion-label price>$2.380</ion-label>
+    </div>
+
+    <div description>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos ad magni deserunt ex ducimus itaque magnam pariatur
+      voluptatibus dicta repellat quasi vitae inventore optio aliquam, tempore eum obcaecati impedit reprehenderit.
+    </div><br>
+
+    <div ingredents>
+      <ion-icon name="restaurant-outline"></ion-icon>
+      &nbsp;&nbsp;<ion-label>Ingredientes</ion-label>
+      <br>
+      <ng-container>
+        <ion-item *ngFor="let i of [1,2,3,4,5]" style="padding: 0">Peperoni</ion-item>
+      </ng-container>
+
+    </div>
+  </section>
+
+</ion-content>
+<ion-footer>
+
+  <div style="width: 100%" align="center">
+    <ion-button expand="block" full-btn>
+      Añadir al carrito
+    </ion-button>
+  </div>
+
+</ion-footer>

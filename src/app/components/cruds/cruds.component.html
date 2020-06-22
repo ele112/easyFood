@@ -1,0 +1,102 @@
+<ion-content>
+
+
+
+  <ng-container *ngIf="crud == 'carta'">
+    <div align="center">
+      <h2>Cartas</h2>
+      <ion-icon class="icon-close" name="close-outline" (click)="close()"></ion-icon>
+    </div>
+    <form #form="ngForm" (ngSubmit)="save(form)">
+      <ion-item>
+        <ion-label stacked>Nombre</ion-label>
+        <ion-input name="nombre" type="text" placeholder="Nombre de la carta" ngModel required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Descripcion</ion-label>
+        <ion-textarea name="descripcion" type="text" placeholder="Descripcion de la carta" ngModel required>
+        </ion-textarea>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Precio</ion-label>
+        <ion-input name="precio" type="number" placeholder="Precio de la carta" ngModel required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Imagen</ion-label>
+        <input id="uploadBtn" (change)="uploadFile($event.target.files)" type="file" class="upload" />
+
+      </ion-item>
+      <br>
+      <div padding>
+        <ion-button size="large" type="submit" [disabled]="form.invalid" expand="block">Guardar</ion-button>
+      </div>
+
+    </form>
+  </ng-container>
+
+
+  <ng-container *ngIf="crud == 'ingrediente'">
+    <div align="center">
+      <h2>Ingredientes</h2>
+      <ion-icon class="icon-close" name="close-outline" (click)="close()"></ion-icon>
+    </div>
+    <br>
+
+    <ion-item>
+      <ion-label stacked>Nombre</ion-label>
+      <ion-input name="nombre" type="text" placeholder="Nombre de la carta" [(ngModel)]="ingredientes.nombre" ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Descripcion</ion-label>
+      <ion-textarea name="descripcion" type="text" placeholder="Descripcion de la carta" [(ngModel)]="ingredientes.descripcion"  >
+      </ion-textarea>
+    </ion-item>
+    <br>
+    <div padding>
+      <ion-button size="large" *ngIf="!isModify" type="submit" expand="block" (click)="save()">Guardar</ion-button>
+      <ion-button size="large" *ngIf="isModify" type="submit" expand="block" (click)="modify()">Modificar</ion-button>
+    </div>
+
+
+    <br>
+    <hr>
+    <ion-list>
+
+      <ion-item-sliding *ngFor="let item of [1,2,3,4,5]" (click)="modificarIngrediente(item)">
+        <ion-item-options side="end">
+          <ion-item-option color="danger" expandable>
+            <ion-icon name="trash-outline"></ion-icon>
+          </ion-item-option>
+        </ion-item-options>
+        <ion-item >
+          <div>
+           <p>Nombre</p>
+            <p>Descripcion</p>
+          </div>
+        </ion-item>
+
+      </ion-item-sliding>
+
+    </ion-list>
+
+  </ng-container>
+
+
+  <ng-container *ngIf="crud == 'promo'">
+    <div align="center">
+      <h2>Promocion</h2>
+      <ion-icon class="icon-close" name="close-outline" (click)="close()"></ion-icon>
+    </div>
+    <br>
+
+    <ion-list >
+      <ion-item *ngFor="let carta of [1,2,3,4,5]" (click)="addPromo(carta)">
+        <img src="" alt="" >
+        <p>Carta nombre</p>
+      </ion-item>
+    </ion-list>
+
+
+  </ng-container>
+
+</ion-content>

@@ -4,7 +4,11 @@ import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
+
 import { HomePage } from './home.page';
+import { SearchViewComponent } from './search-view/search-view.component';
+import { PerfilComponent } from './perfil/perfil.component';
+import { PopoverComponent } from '../components/popover/popover.component';
 
 @NgModule({
   imports: [
@@ -18,6 +22,7 @@ import { HomePage } from './home.page';
       }
     ])
   ],
-  declarations: [HomePage]
+  declarations: [HomePage, SearchViewComponent, PerfilComponent, PopoverComponent],
+  entryComponents: [SearchViewComponent, PerfilComponent, PopoverComponent]
 })
 export class HomePageModule {}

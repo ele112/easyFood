@@ -1,0 +1,73 @@
+<ion-header translucent="true">
+
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title title>Productos</ion-title>
+
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content>
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button text=""></ion-back-button>
+      </ion-buttons>
+      <ion-label large>Productos</ion-label>
+    </ion-toolbar>
+  </ion-header>
+
+  <section>
+    <ion-row *ngFor="let i of [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]" productos 
+      [routerLink]="['/detalle-producto']">
+      <ion-col>
+        <img src="https://cdn2.thecatapi.com/images/MTgzMDkyMw.jpg" class="image-list">
+      </ion-col>
+
+      <ion-col size="6" class="border-bottom">
+        <div class="product-detail">
+          <div>
+            <ion-label title> Avatar Start</ion-label><br>
+            <ion-label small>First description</ion-label>
+          </div>
+          <ion-label precio>$2.300 </ion-label>
+        </div>
+      </ion-col>
+
+      <ion-col size="2" class="border-bottom">
+        <app-selector [value]="2" (valueAdd)="modifySelect('add')" (valueRm)="modifySelect('rm')">
+        </app-selector>
+      </ion-col>
+
+    </ion-row>
+  </section>
+
+</ion-content>
+
+
+<ion-footer>
+
+  <ion-row>
+
+
+    <ion-col size="5" center>
+      <div>
+        <ion-label class="foot-small-title">Total</ion-label><br>
+        <ion-label class="foot-price">$1.280</ion-label>
+      </div>
+    </ion-col>
+
+    <ion-col size="7" class="wrap-foot">
+      <ion-button class="wrap-cart" expand="block" shape="round" align="right">
+        <ion-label>Carrito</ion-label>&nbsp;&nbsp;&nbsp;&nbsp;
+        <ion-icon name="basket-outline"></ion-icon>
+      </ion-button>
+    </ion-col>
+  </ion-row>
+
+
+
+</ion-footer>
