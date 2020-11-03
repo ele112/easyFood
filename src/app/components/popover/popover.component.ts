@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
-import { AuthenticationService } from 'src/app/services/Authentication.service';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 import { PopoverController } from '@ionic/angular';
 
 @Component({

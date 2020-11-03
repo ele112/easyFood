@@ -1,0 +1,63 @@
+
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons>
+      <ion-title>Ingredientes</ion-title>
+      <ion-button fill="clear" (click)="modal.dismiss();">
+        <ion-icon slot="icon-only" style="color: #555555; zoom: .8;"  name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ng-container>
+    
+    <ion-item>
+      <ion-label position="floating">Nombre</ion-label>
+      <ion-input name="nombre" type="text" placeholder="Nombre del ingrediente" [(ngModel)]="ingrediente.nombre">
+      </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Descripcion</ion-label>
+      <ion-textarea name="descripcion" type="text" placeholder="Descripcion del ingrediente"
+        [(ngModel)]="ingrediente.descripcion">
+      </ion-textarea>
+    </ion-item>
+    <br>
+    <div class="ion-padding">
+      <ion-button size="large" *ngIf="!isModifyIngrediente" type="submit" expand="block" (click)="guardarIngrediente()">
+        Guardar</ion-button>
+      <ion-button size="large" *ngIf="isModifyIngrediente" type="submit" expand="block"
+        (click)="guardarIngredienteModificado()">Modificar</ion-button>
+    </div>
+
+
+    <br>
+    <hr>
+    <ion-list>
+      <ion-item lines="none" align="center" *ngIf="ingredientes.length == 0">
+        <ion-label>No se encontraron ingredientes</ion-label>
+      </ion-item>
+      <ion-item-sliding *ngFor="let ingrediente of ingredientes"
+        (click)="modificarIngrediente(ingrediente);$event.stopPropagation();">
+        <ion-item-options side="end">
+          <ion-item-option color="danger" expandable
+            (click)="eliminarIngrediente(ingrediente.id);$event.stopPropagation();">
+            <ion-icon name="trash-outline"></ion-icon>
+          </ion-item-option>
+        </ion-item-options>
+        <ion-item>
+          <ion-label>
+            <p><strong>Nombre</strong>: {{ingrediente.nombre}}</p>
+            <p><strong>Descripcion</strong>: {{ingrediente.descripcion}}</p>
+          </ion-label>
+        </ion-item>
+
+      </ion-item-sliding>
+    </ion-list>
+
+  </ng-container>
+
+</ion-content>

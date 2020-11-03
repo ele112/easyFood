@@ -1,0 +1,109 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons>
+      <ion-title>Administrador</ion-title>
+      <ion-button fill="clear" (click)="modal.dismiss();">
+        <ion-icon slot="icon-only" style="color: #555555; zoom: .8;"  name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <ng-container  *ngIf="ingredientes">
+    <ion-item>
+      <ion-label position="floating">Nombre</ion-label>
+      <ion-input name="nombre" type="text" placeholder="Nombre de la productos" [(ngModel)]="producto.nombre"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Precio</ion-label>
+      <ion-input name="precio" type="number" placeholder="Precio de la productos" [(ngModel)]="producto.precio_unidad"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Ingredientes</ion-label>
+      <ion-select placeholder="Seleccione" id="multiValue" multiple="true" name="ingredientes"  [(ngModel)]="producto.ingredientes">
+        <ion-select-option 
+          *ngFor="let ingrediente of ingredientes" 
+          [value]="ingrediente.id" 
+          [selected]="ingrediente.id">{{ingrediente.nombre}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Promocion</ion-label>
+      <ion-select placeholder="Seleccione" name="ingredientes"  [(ngModel)]="producto.promocion">
+        <ion-select-option value="si">Si</ion-select-option>
+        <ion-select-option value="no">No</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Descripcion promo</ion-label>
+      <ion-textarea name="descripcion" type="text" placeholder="Descripcion de la productos" [(ngModel)]="producto.descripcion">
+      </ion-textarea>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Categoria</ion-label>
+      <ion-select placeholder="Seleccione"  name="ingredientes"  [(ngModel)]="producto.categoria">
+         <ion-select-option 
+          *ngFor="let categoria of categorias" 
+          [value]="categoria.id" 
+          [selected]="categoria.id">{{categoria.nombre}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Imagen</ion-label><br><br>
+      <input id="uploadBtn" (change)="subirImagen($event.target.files)" type="file" class="upload" />
+    </ion-item>
+    <br><br>
+    <div padding align="center">
+      <ion-button [disabled]="isModifyProducto" style="width: 90%;" size="large" type="submit" expand="block"
+        (click)="guardarProducto()">Guardar</ion-button>
+    </div>
+    <br>
+    <div class="ion-padding">
+      <h2>
+        Productos
+      </h2>
+    </div>
+    <ion-list>
+      <ion-item lines="none" align="center" *ngIf="productos.length == 0">
+        <ion-label>No se encontraron Productos</ion-label>
+      </ion-item>
+
+      <ion-item-sliding *ngFor="let productos of productos" (click)="modificarProducto(productos);$event.stopPropagation();">
+        <ion-item-options side="end">
+          <ion-item-option color="danger" expandable (click)="eliminarProducto(productos.id);$event.stopPropagation();">
+            <ion-icon name="trash-outline"></ion-icon>
+          </ion-item-option>
+        </ion-item-options>
+        <ion-item lines="none" (click)="modificarProducto">
+          <ion-row productos>
+            <ion-col size="5">
+              <img [src]="productos.urlFoto" class="image-list">
+            </ion-col>
+
+            <ion-col size="7" class="border-bottom">
+              <div class="product-detail">
+                <div>
+                  <label title> {{productos.nombre}}</label><br>
+                  <label small>{{productos.descripcion}}</label>
+                </div>
+              </div>
+            </ion-col>
+
+          </ion-row>
+
+        </ion-item>
+
+      </ion-item-sliding>
+    </ion-list>
+  </ng-container>
+</ion-content>

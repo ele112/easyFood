@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons>
+      <ion-title>Pedidos</ion-title>
+      <ion-button fill="clear" (click)="modal.dismiss();">
+        <ion-icon slot="icon-only" style="color: #555555; zoom: .8;"  name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+
+  <ion-list>
+    <ion-item lines="none" align="center" *ngIf="pedidos.length == 0">
+      <ion-label>No se encontraron pedidos</ion-label>
+    </ion-item>
+
+
+    <ion-item-sliding *ngFor="let pedido of pedidos" (click)="detallePedido(pedido)">
+      <ion-item-options side="end">
+        <ion-item-option color="danger" expandable
+          (click)="eliminarPedido(pedido.id);$event.stopPropagation();">
+          <ion-icon name="trash-outline"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+      <ion-item>
+        <ion-label>
+          <p><strong>Nombre</strong>: {{pedido.nombre}}</p>
+          <p><strong>Cantiadad</strong>: {{pedido.pedidos.length}}</p>
+          <p><strong>Total</strong>: ${{pedido.total | number}}</p>
+        </ion-label>
+      </ion-item>
+
+    </ion-item-sliding>
+  </ion-list>
+
+</ion-content>

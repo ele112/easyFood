@@ -1,5 +1,5 @@
 
-<ion-content>
+<ion-content fullscreen="true">
   
   <div wrapper>
     
@@ -15,75 +15,86 @@
         </ion-row>
         
       </div>
-      <div searchbar (click)="presentSearchView()">
-        <ion-searchbar  border  disabled="true" placeholder="Search..."></ion-searchbar>
-      </div>
-    
-      <div banner>
-        <label black title>Promociones</label>
-        <p>Ver mas</p>
-      </div>
-    
-      <div promos-body>
-        <ion-slides  [options]="slideConfig">
-          <ion-slide *ngFor="let slide of [1,2,3,4,5]">
-            <ion-card>
-              <div class="img">
-                <img src="https://img.freepik.com/psd-gratis/plantilla-banner-comida-mexicana_23-2148370421.jpg?size=626&ext=jpg" alt="">
-              </div>
-              <div descripcion>
-                <ion-label promotitle> Promo 3x2 </ion-label> <br>
-                <ion-label promodesc> Una descripcion corta de la promocion y los productos que lleva </ion-label>
-    
-              </div>
-    
-            </ion-card>
-          </ion-slide>
-        </ion-slides>
-    
-      </div>
-    
-      <div banner>
-        <label black title>Categorias</label>
-        <p (click)="navigateTo('productos')">Ver todas</p>
-      </div>
-    
-      <div categories>
-    
-        <ion-slides  [options]="slideConfigMedium">
-          <ion-slide *ngFor="let slide of [1,2,3,4,5]">
-            <ion-card>
-              <div class="img-wrapper">
-                <img src="" alt="">
-              </div>
-              
-            </ion-card>
-          </ion-slide>
-        </ion-slides>
-    
-      </div>
+
       
-      <div banner >
-        <label black title>Recomendados</label>
-        <p fill [routerLink]="['/productos']" routerDirection="forward">Ver todos</p>
+      <div *ngIf="isCerrado" class="cerrado">
+        <h3>El local se encuentra cerrado</h3>
       </div>
-      <br><br>
-      <div recomendado>
-    
-        <ion-row align="center">
-          <ion-col size="6" *ngFor="let slide of [1,2,3,4,5,6]">
-            <ion-card>
-              <label>{{slide}}</label>
-            </ion-card>
-          </ion-col>
-        </ion-row>
-        <ion-button expand="full" (click)="navigateTo('productos')">
-          Ver todos los productos
-        </ion-button>
-      </div>
+
+      <ng-container *ngIf="!isCerrado">
+      
+        <div banner>
+          <label black title>Categorias</label>
+          <!-- <p (click)="navigateTo('productos')">Ver todas</p> -->
+        </div>
+      
+        <div categories>
+      
+          <ion-slides [options]="slideConfigMedium">
+            <ion-slide *ngFor="let categoria of categorias" (click)="toCategory(categoria.id)">
+              <ion-card>
+                <div class="img-wrapper">
+                  <img [src]="categoria.image" alt="">
+                </div>
+                <ion-label>{{categoria.nombre}}</ion-label>
+      
+              </ion-card>
+            </ion-slide>
+          </ion-slides>
+      
+        </div>
+      
+        <div banner>
+          <label black title>Promociones</label>
+          <!-- <p fill [routerLink]="['/productos']" routerDirection="forward">Ver todos</p> -->
+        </div>
+        <br><br>
+        <div recomendado>
+      
+          <ion-item *ngIf="">
+      
+          </ion-item>
+      
+          <section>
+            <ion-row *ngFor="let promo of promociones" productos>
+              <ion-col>
+                <img [src]="promo.urlFoto" class="image-list">
+              </ion-col>
+      
+              <ion-col size="6" class="border-bottom">
+                <div class="product-detail">
+                  <div>
+                    <ion-label title> {{promo.nombre}}</ion-label><br>
+                    <ion-label small>{{promo.descripcion}}</ion-label>
+                  </div>
+                  <ion-label precio>${{promo.precio_unidad}} </ion-label>
+                </div>
+              </ion-col>
+      
+              <ion-col size="2" class="border-bottom">
+                <app-selector [value]="0" (valueAdd)="modifySelect('add'); $event.stopPropagation();"
+                  (valueRm)="modifySelect('rm'); $event.stopPropagation();">
+                </app-selector>
+              </ion-col>
+      
+            </ion-row>
+          </section>
+      
+          <br><br>
+      
+          <ion-button expand="full" (click)="navigateTo('productos')">
+            Ver todos los productos
+          </ion-button>
+        </div>
+      </ng-container>
 
   </div>
 
 </ion-content>
 
-<!-- <app-footer></app-footer> -->
+<ion-footer *ngIf="!isCerrado">
+  <ion-item class="foot" lines="none" (click)="openPedido()" *ngIf="pedido">
+    <h3>Ir a Pedidos</h3>
+    <ion-icon name="reader-outline" slot="end"></ion-icon>
+  </ion-item>
+</ion-footer>

@@ -1,0 +1,38 @@
+
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons>
+      <ion-title>Horarios</ion-title>
+      <ion-button fill="clear" (click)="modal.dismiss();">
+        <ion-icon slot="icon-only" style="color: #555555; zoom: .8;"  name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <br>
+  <ion-item>
+    <ion-label position="floating">Hora Apertura</ion-label>
+    <ion-datetime format="HH:mm" displayFormat="HH:mm" [(ngModel)]="horario.horaInicio"> </ion-datetime>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Hora Cierre</ion-label>
+    <ion-datetime format="HH:mm" displayFormat="HH:mm" [(ngModel)]="horario.horaCierre"> </ion-datetime>
+  </ion-item>
+
+  <div style="width: 100%; padding: 5px">
+    <ion-button (click)="guardarHorario()" expand="block">Guardar</ion-button>
+  </div>
+
+</ion-content>
+
+<ion-footer style="background: #ececec">
+  <div style="width: 100%; padding: 5px">
+    <ion-button *ngIf="!horario.cerrado" (click)="cerrar()" expand="block">Cerrar Local</ion-button>
+    <ion-button *ngIf="horario.cerrado" (click)="abrir()" expand="block">Abrir Local</ion-button>
+  </div>
+</ion-footer>

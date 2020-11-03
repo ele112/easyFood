@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
@@ -6,15 +6,15 @@ import { RouterModule } from '@angular/router';
 
 
 import { HomePage } from './home.page';
-import { SearchViewComponent } from './search-view/search-view.component';
-import { PerfilComponent } from './perfil/perfil.component';
-import { PopoverComponent } from '../components/popover/popover.component';
+import { ComponentsModule } from '../components/component.module';
+
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
+    ComponentsModule,
     RouterModule.forChild([
       {
         path: '',
@@ -22,7 +22,9 @@ import { PopoverComponent } from '../components/popover/popover.component';
       }
     ])
   ],
-  declarations: [HomePage, SearchViewComponent, PerfilComponent, PopoverComponent],
-  entryComponents: [SearchViewComponent, PerfilComponent, PopoverComponent]
+  declarations: [HomePage],
+  entryComponents: [],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  
 })
 export class HomePageModule {}

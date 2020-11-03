@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthenticationService } from '../services/Authentication.service';
+import { AuthenticationService } from '../services/authentication.service';
 import { isNullOrUndefined } from 'util';
 import { ToastController } from '@ionic/angular';
 
@@ -22,8 +22,8 @@ export class LoginPage implements OnInit {
   }
 
   async login(forms){
-    console.log
     const user = forms.form.value;
+    let skip = false;
 
     let isAdmin = null;
     if(user.email == 'admin' && user.password == 'admin'){
@@ -32,8 +32,14 @@ export class LoginPage implements OnInit {
     if(user.email == 'user' && user.password == 'user'){
       isAdmin = false;
     }
+    
+    if(user.email == 'sale' && user.password == 'sale'){
+      isAdmin = null;
+      skip = true;
+    }
+    
 
-    if(isNullOrUndefined(isAdmin)){
+    if(!skip && isNullOrUndefined(isAdmin)){
       const toast = await this.toast.create({
         message: 'Usuario no valido',
         position: 'bottom',
@@ -45,8 +51,9 @@ export class LoginPage implements OnInit {
       toast.present();
       return;
     }
+    
 
-    this.authService.login(user, isAdmin)
+    this.authService.login(user, isAdmin )
 
     console.log(user);
     

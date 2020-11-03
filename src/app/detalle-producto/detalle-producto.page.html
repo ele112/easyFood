@@ -35,14 +35,13 @@
 
       <div>
         <ion-icon name="fast-food-outline"></ion-icon>&nbsp;
-        <ion-label title>Pizza mini</ion-label>
+        <ion-label title>{{producto.nombre}}</ion-label>
       </div><br>
-      <ion-label price>$2.380</ion-label>
+      <ion-label price>${{producto.precio_unidad}}</ion-label>
     </div>
 
     <div description>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos ad magni deserunt ex ducimus itaque magnam pariatur
-      voluptatibus dicta repellat quasi vitae inventore optio aliquam, tempore eum obcaecati impedit reprehenderit.
+      {{producto.descripcion}}
     </div><br>
 
     <div ingredents>
@@ -50,14 +49,27 @@
       &nbsp;&nbsp;<ion-label>Ingredientes</ion-label>
       <br>
       <ng-container>
-        <ion-item *ngFor="let i of [1,2,3,4,5]" style="padding: 0">Peperoni</ion-item>
+        <ion-item *ngFor="let ingrediente of producto.ingredientes" style="padding: 0">{{ingrediente.nombre}}</ion-item>
       </ng-container>
 
     </div>
+    <br><br><br>
+    <ng-container *ngIf="isSaler">
+      <ion-item >
+        <ion-label position="stacked">Stock</ion-label>
+        <ion-input type="number" [value]="producto.cantidad" [(ngModel)]="producto.cantidad"></ion-input>
+     </ion-item>
+     <ion-row>
+       <ion-button expand="block" (click)="guardarStock()">Guardar</ion-button>
+     </ion-row>
+    </ng-container>
+   
+
   </section>
+  
 
 </ion-content>
-<ion-footer>
+<!-- <ion-footer>
 
   <div style="width: 100%" align="center">
     <ion-button expand="block" full-btn>
@@ -65,4 +77,4 @@
     </ion-button>
   </div>
 
-</ion-footer>
+</ion-footer> -->

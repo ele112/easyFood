@@ -9,7 +9,7 @@ import { ProductListPageRoutingModule } from './product-list-routing.module';
 import { ProductListPage } from './product-list.page';
 import { PipeModule } from '../pipes/pipes.module';
 import { IonBottomDrawerModule } from 'ion-bottom-drawer';
-import { SelectorComponent } from '../components/selector/selector.component';
+import { ComponentsModule } from '../components/component.module';
 
 @NgModule({
   imports: [
@@ -17,12 +17,12 @@ import { SelectorComponent } from '../components/selector/selector.component';
     FormsModule,
     IonicModule,
     PipeModule,
+    ComponentsModule,
     IonBottomDrawerModule,
     ProductListPageRoutingModule
   ],
   declarations: [
-    ProductListPage,
-    SelectorComponent
+    ProductListPage
   ]
 })
 export class ProductListPageModule {}

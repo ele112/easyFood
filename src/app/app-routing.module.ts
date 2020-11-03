@@ -27,15 +27,37 @@ const routes: Routes = [
     loadChildren: () => import('./carrito/carrito.module').then( m => m.CarritoPageModule)
   },
   {
-    path: 'medios-pago',
-    loadChildren: () => import('./medios-pago/medios-pago.module').then( m => m.MediosPagoPageModule)
+    path: 'medios',
+    loadChildren: () => import('./medios/medios.module').then( m => m.MediosPageModule)
   },
   {
-    path: 'admin-page',
-    loadChildren: () => import('./admin-page/admin-page.module').then( m => m.AdminPagePageModule),
-    canActivate: [AuthGuardService]
+    path: 'realizado',
+    loadChildren: () => import('./realizado/realizado.module').then( m => m.RealizadoPageModule)
+  },
+  {
+    path: 'pedidos',
+    loadChildren: () => import('./pedidos/pedidos.module').then( m => m.PedidosPageModule)
+  },
+  {
+    path: 'detalle-pedido',
+    loadChildren: () => import('./detalle-pedido/detalle-pedido.module').then( m => m.DetallePedidoPageModule)
+  },
+  {
+    path: 'home-vendedor',
+    loadChildren: () => import('./home-vendedor/home-vendedor.module').then( m => m.HomeVendedorPageModule)
+  },
+  {
+    path: 'productos-vendedor',
+    loadChildren: () => import('./productos-vendedor/productos-vendedor.module').then( m => m.ProductosVendedorPageModule)
+  },
+  {
+    path: 'scan-carta',
+    loadChildren: () => import('./scan-carta/scan-carta.module').then( m => m.ScanCartaPageModule)
+  },
+  {
+    path: 'admin',
+    loadChildren: () => import('./admin/admin.module').then( m => m.AdminPageModule)
   }
-
 
 ];
 

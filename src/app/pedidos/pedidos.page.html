@@ -1,9 +1,53 @@
-<ion-header>
+<ion-header translucent="true">
+
   <ion-toolbar>
-    <ion-title>pedidos</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title title>Productos</ion-title>
+
   </ion-toolbar>
+
 </ion-header>
 
 <ion-content>
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button text=""></ion-back-button>
+      </ion-buttons>
+      <ion-label large>Productos</ion-label>
+    </ion-toolbar>
+  </ion-header>
+
+
+  <ion-list lines="none">
+
+    <ion-card *ngFor="let pedido of pedidos" class="pedido" >
+    
+      <h3>Tu pedido</h3>
+      <label for="">Muestra este código QR en casino Paradiso</label>
+      <ion-img class="qr-image" src="https://miro.medium.com/max/1424/1*sHmqYIYMV_C3TUhucHrT4w.png"></ion-img>
+
+      <div>
+        <ion-button (click)="navCtrl.back();">
+          <ion-icon name="arrow-back-outline" slot="start"></ion-icon>
+          Volver
+        </ion-button><br>
+        <small (click)="goTo(pedido)">Ver detalle</small>
+      </div>
+      <br>
+
+
+
+
+    </ion-card>
+
+
+
+
+  </ion-list>
+
+
 
 </ion-content>

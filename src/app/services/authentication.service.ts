@@ -4,9 +4,7 @@ import { Router } from '@angular/router';
 import { Storage } from '@ionic/storage';
 import { Platform, ToastController } from '@ionic/angular';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class AuthenticationService {
 
   authState = new BehaviorSubject({auth: false, isAdmin: false});
@@ -48,7 +46,6 @@ export class AuthenticationService {
   isAuthenticated() {
     return this.authState.value.auth;
   }
-
 
 
 }

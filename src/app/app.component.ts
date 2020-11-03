@@ -3,8 +3,9 @@ import { Component } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-import { AuthenticationService } from './services/Authentication.service';
+import { AuthenticationService } from './services/authentication.service';
 import { Router } from '@angular/router';
+import { PersistenciaService } from './services/persistente.service';
 
 @Component({
   selector: 'app-root',
@@ -16,6 +17,7 @@ export class AppComponent {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
+    private persistence: PersistenciaService,
     private authenticationService: AuthenticationService,
     private router: Router
   ) {
@@ -24,14 +26,19 @@ export class AppComponent {
 
   initializeApp() {
     this.platform.ready().then(() => {
-      this.statusBar.styleDefault();
+      this.statusBar.hide();
       this.splashScreen.hide();
+      this.persistence.SetPersistence();
 
       this.authenticationService.authState.subscribe((state) => {
-        
+
         if (state && state.auth) {
+          if(state.isAdmin == null){
+            this.router.navigateByUrl('home-vendedor');
+            return;
+          }
           if(state.isAdmin){
-            this.router.navigate(['admin-page']);
+            this.router.navigate(['admin']);
           }else{
             this.router.navigate(['home']);
           }

@@ -21,24 +21,23 @@
   </ion-header>
 
   <section>
-    <ion-row *ngFor="let i of [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]" productos 
-      [routerLink]="['/detalle-producto']">
+    <ion-row *ngFor="let producto of productos" productos (click)="toDesc(producto)">
       <ion-col>
-        <img src="https://cdn2.thecatapi.com/images/MTgzMDkyMw.jpg" class="image-list">
+        <img [src]="producto.urlFoto" class="image-list">
       </ion-col>
 
       <ion-col size="6" class="border-bottom">
         <div class="product-detail">
           <div>
-            <ion-label title> Avatar Start</ion-label><br>
-            <ion-label small>First description</ion-label>
+            <ion-label title>{{producto.nombre}}</ion-label><br>
+            <ion-label small>{{producto.descripcion}}</ion-label>
           </div>
-          <ion-label precio>$2.300 </ion-label>
+          <ion-label precio>${{producto.precio_unidad}} </ion-label>
         </div>
       </ion-col>
 
       <ion-col size="2" class="border-bottom">
-        <app-selector [value]="2" (valueAdd)="modifySelect('add')" (valueRm)="modifySelect('rm')">
+        <app-selector [value]="producto.quality" (valueAdd)="modifySelect('add', producto);" (valueRm)="modifySelect('rm', producto);">
         </app-selector>
       </ion-col>
 
@@ -56,11 +55,11 @@
     <ion-col size="5" center>
       <div>
         <ion-label class="foot-small-title">Total</ion-label><br>
-        <ion-label class="foot-price">$1.280</ion-label>
+        <ion-label class="foot-price">${{_carrito.total | CustomeCurrency}}</ion-label>
       </div>
     </ion-col>
 
-    <ion-col size="7" class="wrap-foot">
+    <ion-col size="7" class="wrap-foot" (click)="abrirCarrito();">
       <ion-button class="wrap-cart" expand="block" shape="round" align="right">
         <ion-label>Carrito</ion-label>&nbsp;&nbsp;&nbsp;&nbsp;
         <ion-icon name="basket-outline"></ion-icon>

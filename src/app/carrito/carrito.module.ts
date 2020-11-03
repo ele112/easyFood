@@ -7,12 +7,16 @@ import { IonicModule } from '@ionic/angular';
 import { CarritoPageRoutingModule } from './carrito-routing.module';
 
 import { CarritoPage } from './carrito.page';
+import { ComponentsModule } from '../components/component.module';
+import { PipeModule } from '../pipes/pipes.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
+    ComponentsModule,
+    PipeModule,
     CarritoPageRoutingModule
   ],
   declarations: [CarritoPage]

@@ -9,17 +9,20 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AuthGuardService } from './services/auth-guard.service';
-import { AuthenticationService } from './services/Authentication.service';
 import { IonicStorageModule } from '@ionic/storage';
-import { ComponentsModule } from './components/component.module';
-import { AngularFireModule } from '@angular/fire';
-import { AngularFirestoreModule } from '@angular/fire/firestore';
-import { AngularFireStorageModule } from '@angular/fire/storage';
-import { environment } from 'src/environments/environment';
-import { FirebaseService } from './services/firebase.service';
 import { RequestService } from './services/request.service';
 import { WebService } from './services/webservice.service';
 import { HttpClientModule } from '@angular/common/http';
+import { AuthenticationService } from 'src/app/services/authentication.service';
+import { ComponentsModule } from './components/component.module';
+import { Camera } from '@ionic-native/camera/ngx';
+import { PersistenciaService } from './services/persistente.service';
+import { environment } from 'src/environments/environment';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { FirebaseService } from './services/firebase.service';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -27,12 +30,13 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     HttpClientModule,
     BrowserModule,
+    // ComponentsModule,
+    AngularFirestoreModule, // imports firebase/firestore, only needed for database features
+    AngularFireStorageModule,
+    AngularFireModule.initializeApp(environment.firebase),
     IonicModule.forRoot({ mode: 'ios' }),
     IonicStorageModule.forRoot({ name: '__mydb', driverOrder: ['indexeddb', 'sqlite', 'websql'] }),
-    AppRoutingModule,
-    AngularFireModule.initializeApp(environment.firebase, 'duoc'), // imports firebase/app needed for everything
-    AngularFirestoreModule, // imports firebase/firestore, only needed for database features
-    AngularFireStorageModule
+    AppRoutingModule
   ],
 
   providers: [
@@ -40,9 +44,12 @@ import { HttpClientModule } from '@angular/common/http';
     SplashScreen,
     AuthGuardService,
     AuthenticationService,
-    FirebaseService,
     RequestService,
     WebService,
+    Camera,
+    FirebaseService,
+    PersistenciaService,
+    BarcodeScanner,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent],
